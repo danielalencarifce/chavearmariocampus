@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+	</h:head>
+	<h:body>
+		
+          <p:layout fullPage="true">
+			 <h:form id="form">
+			 	<p:growl id="growl" for="sucess" />
+			 	<p:growl id="growl2" for="negative" />
+				<p:panel id="panel" header="Alterar Senha"> 
+					<h:panelGrid columns="3">
+						<h:outputLabel for="usuario" value="Usuário:" />
+						<h:outputLabel id="usuario" value="#{alterarSenhaBean.usuario.login}"/>
+						<h:outputLabel value=""/>
+						
+						<h:outputLabel for="senhaold" value="Digite sua senha:" />
+						<p:password id="senhaold" value="#{alterarSenhaBean.senha_old}" required="true" requiredMessage="A senha deve ser preenchida" />
+						<p:message for="senhaold" display="icon" />
+						
+						<h:outputLabel for="newsenha" value="Nova senha:" />
+						<p:password id="newsenha" value="#{alterarSenhaBean.senha_new}" required="true" requiredMessage="A nova senha deve ser preenchida" />
+						<p:message for="newsenha" display="icon" />
+							
+					</h:panelGrid>
+					
+					<div class="g-recaptcha" data-sitekey="6LcnI1IUAAAAAP4sY4cDuaBSgh0lPRi6LlMNLk5P"/>
+						
+					<p:commandButton id="cadBtn" type="submit" value="Alterar Senha" actionListener="#{alterarSenhaBean.alterarSenha()}" style="margin:10px;" icon="ui-icon-check" ajax="false" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Alterando senha...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+          
+      </h:body>
+</h:html>

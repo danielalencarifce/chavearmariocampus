@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head></h:head>
+	<h:body>
+          <p:layout fullPage="true">
+			 <h:form id="form">
+				<p:panel id="panel" header="Editar Empréstimo"> 
+					<p:growl id="growl" for="sucess"/>
+					
+					<h:panelGrid columns="3">
+						<h:outputLabel for="armario" value="Armário:" />
+						<p:inplace id="armario" editor="true">
+				            <p:autoComplete id="acSimple" placeholder="Número do Armário" value="#{editarEmprestimoBean.novoArmario}" completeMethod="#{editarEmprestimoBean.getArmariosDisponiveis()}" />	
+							<p:commandButton id="buscaBtn" ajax="false" type="submit" value="Pesquisar" action="#{editarEmprestimoBean.buscarArmario()}" style="margin:10px;" icon="ui-icon-search" update="panelGeral">
+							</p:commandButton>			
+							<p:blockUI  trigger="buscaBtn">
+								Buscando...
+							</p:blockUI>
+			            </p:inplace>
+			            <p:message for="armario" display="icon" />
+	            	</h:panelGrid>
+	            	
+	            	<div align="center" >
+		            <p:panelGrid columns="2" style="center" autoUpdate="false" id="panelGeral" rendered="#{editarEmprestimoBean.changed}">
+					    <h:outputText value="Número do Armário:" />
+					    <h:outputText value="#{editarEmprestimoBean.armario.numero_armario}" />
+					 
+					    <h:outputText value="Bloco:" />
+					    <h:outputText value="#{editarEmprestimoBean.armario.bloco}" />
+					 
+					    <h:outputText value="Coordenação:" />
+					    <h:outputText value="#{editarEmprestimoBean.armario.coordenacao.nome}" />
+					 
+					    <h:outputText value="Status:" />
+					    <h:outputText value="#{editarEmprestimoBean.armario.disponivel}" />
+					</p:panelGrid>
+					</div>																			
+					
+					<p:commandButton id="cadBtn" type="submit" value="Editar" actionListener="#{editarEmprestimoBean.atualizarEmprestimo()}" style="margin:10px;" update="form" icon="ui-icon-check" ajax="true" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Editando...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+      </h:body>
+</h:html>

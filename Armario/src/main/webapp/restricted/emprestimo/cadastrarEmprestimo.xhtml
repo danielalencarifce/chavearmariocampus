@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head></h:head>
+	<h:body>
+          <p:layout fullPage="true">
+			 <h:form id="form">
+			 	<p:growl id="growl" for="sucess" />
+				<p:panel id="panel" header="Cadastro de Empréstimo"> 
+					<h:panelGrid columns="3">
+						<h:outputLabel for="pesqAluno" value="Pesquisar Aluno: "/>
+						<p:autoComplete id="pesqAluno" placeholder="Matrícula do Aluno" value="#{cadastrarEmprestimoBean.matricula}" completeMethod="#{listarAlunoBean.autocompleteAlunoSemArmario()}" required="true" requiredMessage="O aluno deve ser preenchido"/>
+						<p:message for="pesqAluno" display="icon" />
+						
+						<h:outputLabel for="pesqArmario" value="Pesquisar Ármario: "/>
+						<p:autoComplete id="pesqArmario" placeholder="Número do Armário" value="#{cadastrarEmprestimoBean.armario}" completeMethod="#{listarArmarioBean.autocompleteArmarioDisponiveis()}" required="true" requiredMessage="O armario deve ser preenchido"/>
+						<p:message for="pesqArmario" display="icon" />
+																											
+					</h:panelGrid>
+					<p:commandButton id="cadBtn" type="submit" value="Cadastrar" actionListener="#{cadastrarEmprestimoBean.adicionarEmprestimo()}" style="margin:10px;" update="form" icon="ui-icon-check" ajax="true" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Cadastrando...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+      </h:body>
+</h:html>

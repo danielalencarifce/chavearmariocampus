@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:sec="http://www.springframework.org/security/tags">
+
+    <ui:insert name="header">
+		<ui:include src="../header.xhtml" />
+	</ui:insert>
+	<h:body>
+    	<ui:insert name="menu">
+			<ui:include src="../menu.xhtml" />
+		</ui:insert> 
+			 <h:form id="form">
+				<p:panel id="panel" header="Meus Dados" style="margin-top:1%;"> 		
+				<p:growl id="growl" for="sucess" />
+				
+				<sec:authorize ifAnyGranted="ROLE_ALUNO">   
+					<div align="center" >
+		            <p:panelGrid columns="2" style="center" autoUpdate="false" id="panelGeral" rendered="#{meusDadosBean.isAluno}">
+					    <h:outputText value="Nome Completo:" />
+					    <h:outputText value="#{meusDadosBean.aluno.nome} #{meusDadosBean.aluno.sobrenome}" />
+					 
+					    <h:outputText value="Matrícula:" />
+					    <h:outputText value="#{meusDadosBean.aluno.matricula}" />
+					 
+					    <h:outputText value="Curso:" />
+					    <h:outputText value="#{meusDadosBean.aluno.curso}" />
+					    
+					    <h:outputText value="Telefone:" />
+					    <h:outputText value="#{meusDadosBean.aluno.telefone}" />
+					    
+					    <h:outputText value="E-mail:" />
+					    <h:outputText value="#{meusDadosBean.aluno.email}" />
+					 
+					    <h:outputText value="Armário:" />
+					    <h:outputText value="#{meusDadosBean.aluno.armario.numero_armario}" />
+					</p:panelGrid>
+					</div>				
+				</sec:authorize>
+				
+				<sec:authorize ifAnyGranted="ROLE_FUNCIONARIO">   
+					<div align="center" >
+		            <p:panelGrid columns="2" style="center" autoUpdate="false" id="panelGeral" rendered="#{meusDadosBean.isFuncionario}">
+					    <h:outputText value="Nome Completo:" />
+					    <h:outputText value="#{meusDadosBean.funcionario.nome} #{meusDadosBean.funcionario.sobrenome}" />
+					 
+					    <h:outputText value="Departamento:" />
+					    <h:outputText value="#{meusDadosBean.funcionario.departamento}" />
+					 
+					    <h:outputText value="Telefone:" />
+					    <h:outputText value="#{meusDadosBean.funcionario.telefone}" />
+					 
+					    <h:outputText value="E-mail:" />
+					    <h:outputText value="#{meusDadosBean.funcionario.email}" />
+					    
+					</p:panelGrid>
+					</div>				
+				</sec:authorize>
+				</p:panel>
+			</h:form>
+            <ui:insert name="footer">
+				<ui:include src="../footer.xhtml" />
+			</ui:insert>  
+      </h:body>
+</html>

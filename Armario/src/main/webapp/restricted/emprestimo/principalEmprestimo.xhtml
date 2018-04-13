@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:insert name="header">
+		<ui:include src="../header.xhtml" />
+	</ui:insert>
+	<h:body>
+    	<ui:insert name="menu">
+			<ui:include src="../menu.xhtml" />
+		</ui:insert> 
+			 <h:form id="form">
+				<p:panel id="panel" header="Listar Empréstimos" style="margin-top:1%;"> 		
+				<p:growl id="growl" for="sucess" />
+					<div class="ui-g">
+						<div class="ui-g-12" style="text-align: right">
+						    <p:commandButton id="rootbtn" value="Novo Empréstimo" icon="ui-icon-extlink" actionListener="#{cadastrarEmprestimoBean.openCadastro()}" />
+					    </div>
+					    <div class="ui-g-12">
+					    	<h:outputText style="font-weight:bold" value="Pesquisar Empréstimo: " />
+					    	<p:autoComplete id="acSimple" placeholder="Matrícula do Aluno" value="#{listarEmprestimoBean.matricula}" completeMethod="#{listarEmprestimoBean.autocompleteEmprestimo()}" />	
+							<p:commandButton id="buscaBtn" type="submit" value="Pesquisar" actionListener="#{listarEmprestimoBean.buscarEmprestimo()}" style="margin:10px;" update="tbl" icon="ui-icon-search" ajax="true" />			
+							<p:blockUI  trigger="buscaBtn">
+								Buscando...
+							</p:blockUI>
+					    </div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-12">
+					    	<p:dataTable id="tbl" var="aluno" value="#{listarEmprestimoBean.alunosComArmario}" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" paginator="true" rows="10" style="margin-bottom:20px">
+						        <p:column style="text-align:center">
+						            <f:facet name="header">
+						                <h:outputText value="Nome Completo" />
+						            </f:facet>
+						            <h:outputText styleClass="alignCenter"  value="#{aluno.nome} #{aluno.sobrenome}" />
+						        </p:column>
+						        <p:column style="text-align:center"> 
+						            <f:facet name="header">
+						                <h:outputText value="Matrícula"/>
+						            </f:facet>
+						            <h:outputText styleClass="alignCenter" value="#{aluno.matricula}" />
+						        </p:column>
+						        <p:column style="text-align:center">
+						            <f:facet name="header">
+						                <h:outputText value="Ármario"/>
+						            </f:facet>
+						            <h:outputText styleClass="alignCenter" value="#{aluno.armario.getNumero_armario()}" />
+						        </p:column>
+						        <p:column style="text-align:center">
+						            <f:facet name="header">
+						                <h:outputText value="Telefone"/>
+						            </f:facet>
+						            <h:outputText styleClass="alignCenter" value="#{aluno.telefone}" />
+						        </p:column>   
+						        <p:column style="text-align:center">
+						            <f:facet name="header">
+						                <h:outputText value="E-mail"/>
+						            </f:facet>
+						            <h:outputText styleClass="alignCenter" value="#{aluno.email}" />
+						        </p:column>   
+						        <p:column style="text-align:center">
+						            <f:facet name="header">
+						                <h:outputText value="Curso"/>
+						            </f:facet>
+						            <h:outputText styleClass="alignCenter" value="#{aluno.curso}" />
+						        </p:column>
+						        
+						        <p:column style="text-align:center">
+							    	<p:commandButton value="Editar Empréstimo" icon="ui-icon-pencil" ajax="true" actionListener="#{editarEmprestimoBean.openEditar(aluno)}" update="tbl"/>
+						        </p:column>
+						        <p:column style="text-align:center">
+							        <p:commandButton value="Remover" update="form" actionListener="#{deletarEmprestimoBean.deletarEmprestimo(aluno)}" icon="ui-icon-trash">
+						            	<p:confirm header="Confirmar Exclusão" message="Você tem certeza?" icon="ui-icon-alert" />
+						            </p:commandButton>
+						            <p:confirmDialog global="true"   showEffect="fade" hideEffect="fade">
+								        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" ajax="true" update="tbl" />
+								        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								    </p:confirmDialog>
+						        </p:column>
+						    </p:dataTable>
+					    </div>
+					</div>			
+				</p:panel>
+			</h:form>
+            <ui:insert name="footer">
+				<ui:include src="../footer.xhtml" />
+			</ui:insert>  
+      </h:body>
+</html>

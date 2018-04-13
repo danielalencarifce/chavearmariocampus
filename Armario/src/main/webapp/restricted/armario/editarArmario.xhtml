@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+
+	<h:head></h:head>
+	<h:body>
+          <p:layout fullPage="true">
+			 <h:form id="form">
+				<p:panel id="panel" header="Editar Armário"> 
+					<p:growl id="growl" for="sucess"/>
+					<h:panelGrid columns="3">
+						<h:outputLabel for="numero" value="Número do armário:" />
+						<p:inplace id="numero" editor="true">
+				            <p:inputText value="#{editarArmarioBean.armario.numero_armario}" required="true" requiredMessage="O número do armário deve ser preenchido"  label="text" />
+				        </p:inplace>
+						<p:message for="numero" display="icon" />
+						
+						<h:outputLabel for="bloco" value="Bloco:" />
+						<p:inplace id="bloco" editor="true">
+				            <p:selectOneMenu value="#{editarArmarioBean.armario.bloco}" style="width:150px" required="true" requiredMessage="Selecione o bloco">
+				                <f:selectItem itemLabel="Selecione o bloco" itemValue="" noSelectionOption="true" />
+				                <f:selectItem itemLabel="Computação" itemValue="Computação"/>
+				                <f:selectItem itemLabel="Meio Ambiente" itemValue="Meio Ambiente"/>
+				                <f:selectItem itemLabel="Automação Industrial" itemValue="Automação Industrial"/>
+				                <f:selectItem itemLabel="Química" itemValue="Química"/>
+				            </p:selectOneMenu>
+				        </p:inplace>
+						<p:message for="bloco" display="icon" />
+						
+						<h:outputLabel for="coordenacao" value="Coordenação:" />
+						<p:inplace id="coordenacao" editor="true">
+				            <p:selectOneMenu value="#{editarArmarioBean.armario.coordenacao.nome}" onchange="#{editarArmarioBean.onChangeCoordenacao(editarArmarioBean.armario.coordenacao.nome)}" style="width:150px" required="true" requiredMessage="Selecione a coordenação">
+				                <f:selectItem itemLabel="Selecione a coordenação" itemValue="" noSelectionOption="true" />
+				                <f:selectItems value="#{editarArmarioBean.getNomesCoordenacao()}" />
+				            </p:selectOneMenu>	
+			            </p:inplace>
+			            <p:message for="coordenacao" display="icon" />
+			            
+			            <h:outputLabel for="estante" value="Estante:" />
+						<p:inplace id="estante" editor="true">
+				            <p:selectOneMenu value="#{editarArmarioBean.armario.estante.numero_estante}" onchange="#{editarArmarioBean.onChangeEstante(editarArmarioBean.armario.estante.numero_estante)}" style="width:150px" required="true" requiredMessage="Selecione a estante">
+				                <f:selectItem itemLabel="Selecione a Estante" itemValue="" noSelectionOption="true" />
+				                <f:selectItems value="#{cadastrarArmarioBean.getNumerosEstantes()}" />
+				            </p:selectOneMenu>	
+			            </p:inplace>
+			            <p:message for="estante" display="icon" />
+																																					
+					</h:panelGrid>
+					<p:commandButton id="cadBtn" type="submit" value="Editar" actionListener="#{editarArmarioBean.atualizarArmario()}" style="margin:10px;" update="form" icon="ui-icon-check" ajax="true" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Editando...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+      </h:body>
+</h:html>

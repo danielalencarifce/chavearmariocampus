@@ -1,0 +1,6 @@
+<Context antiJARLocking="true" antiResourceLocking="true">
+	<Resource name="jdbc/armarios" global="jdbc/armarios" auth="Container"
+		type="javax.sql.DataSource" maxActive="100" maxIdel="30" maxWait="10000"
+		username="postgres" password="12345678" driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/armarios?autoReconnect=true" />
+</Context>

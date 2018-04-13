@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15234162307250" configfile="/Armario/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="your/path/index.xhtml" id="pf15234162623221" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15234162623222" path="/your/path/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="j_spring_security_logout?faces-redirect=true" id="pf15234162623223" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15234162623222" path="/j_spring_security_logout?faces-redirect=true"/>
+  <links id="pf15234162623222" target="pf15234162623223" source="pf15234162623221" outcome="logout"/>
+</pageflow:Pageflow>

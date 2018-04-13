@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:sec="http://www.springframework.org/security/tags">
+		
+	<h:head>
+		   <h:outputStylesheet name="style.css" library="css"/>
+	</h:head>
+	<h:body>
+		<ui:composition>
+		<h:form style="margin-top:1%" id="menu">
+		    <p:menubar>
+			  <sec:authorize ifAllGranted="ROLE_ADMIN">       
+		        <p:submenu label="Funcionários" icon="fa fa-suitcase">
+		        	<p:menuitem value="Listar Funcionário" outcome="#{routers.principalFuncionario}"/>
+		        </p:submenu>
+	 		  </sec:authorize>
+	 		  
+	 		  <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_FUNCIONARIO">       
+		        <p:submenu label="Alunos" icon="fa fa-mortar-board" >
+		        	<p:menuitem value="Listar Alunos" outcome="#{routers.principalAluno}"/>
+		        </p:submenu>
+	 		  </sec:authorize>
+	 		  
+	 		  <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_FUNCIONARIO">       
+		        <p:submenu label="Armários" icon="fa fa-building">
+		        	<p:menuitem value="Listar Armários" outcome="#{routers.principalArmario}" />
+		        	<p:menuitem value="Listar Estantes" outcome="#{routers.principalEstante}" />
+		        </p:submenu>
+	 		  </sec:authorize>
+	 		  
+	 		  <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_FUNCIONARIO">       
+		        <p:submenu label="Empréstimos" icon="fa fa-key">
+		        	<p:menuitem value="Listar Empréstimos" outcome="#{routers.principalEmprestimo}" />
+		        	<p:menuitem value="Emitir Termo" outcome="#{routers.termoResponsabilidade}" />
+		        </p:submenu>
+	 		  </sec:authorize>
+		 		
+		        <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_FUNCIONARIO, ROLE_ALUNO">     
+		 		  	<p:submenu icon="fa fa-navicon" style="position: absolute; right: 15px;">
+		 		  		<p:menuitem value="Meus Dados" icon="fa fa-user" outcome="#{routers.meusDados}"/>
+		 		  		<p:menuitem value="Alterar Senha" icon="fa fa-gear" actionListener="#{alterarSenhaBean.openAlterarSenha()}"/>
+			        	<p:separator />
+			        	<p:menuitem value="Sair" ajax="false" icon="fa fa-sign-out" action="#{usuarioBean.logout()}" url="/j_spring_security_logout"/>
+			        </p:submenu>  
+	 		  	</sec:authorize>
+		        
+		    </p:menubar>
+		</h:form>
+		</ui:composition>
+	</h:body>
+</h:html>

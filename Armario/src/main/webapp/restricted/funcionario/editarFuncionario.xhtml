@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head></h:head>
+	<h:body>
+          <p:layout fullPage="true">
+			 <h:form id="form">
+				<p:panel id="panel" header="Editar Funcionario"> 
+					<p:growl id="growl" for="sucess"/>
+					<h:panelGrid columns="3">
+						<h:outputLabel for="nome" value="Nome:" />
+						<p:inplace id="nome" editor="true">
+				            <p:inputText value="#{editarFuncionarioBean.funcionario.nome}" required="true" requiredMessage="O nome deve ser preenchido"  label="text" />
+				        </p:inplace>
+						<p:message for="nome" display="icon" />
+						
+						<h:outputLabel for="sobrenome" value="Sobrenome:" />
+						<p:inplace id="sobrenome" editor="true">
+				            <p:inputText value="#{editarFuncionarioBean.funcionario.sobrenome}" required="true" requiredMessage="O sobrenome deve ser preenchido"  label="text" />
+				        </p:inplace>
+						<p:message for="sobrenome" display="icon" />
+						
+						<h:outputLabel for="telefone" value="Telefone:" />
+						<p:inplace id="telefone" editor="true">
+						<p:inputText value="#{editarFuncionarioBean.funcionario.telefone}" required="true" requiredMessage="O telefone deve ser preenchido" label="text"/>
+						</p:inplace>
+						<p:message for="telefone" display="icon" />
+						
+						<h:outputLabel for="email" value="Email:" />
+						<p:inplace id="email" editor="true">
+						<p:inputText value="#{editarFuncionarioBean.funcionario.email}" required="true" requiredMessage="O email deve ser preenchido" label="text" />
+						</p:inplace>
+						<p:message for="email" display="icon" />
+						
+						<h:outputLabel for="departamento" value="Departamento:" />
+						<p:inplace id="departamento" editor="true">
+						<p:inputText value="#{editarFuncionarioBean.funcionario.departamento}" required="true" requiredMessage="O departamento deve ser preenchido" label="text" />
+						</p:inplace>
+						<p:message for="departamento" display="icon" />
+																																					
+					</h:panelGrid>
+					<p:commandButton id="cadBtn" type="submit" value="Editar" actionListener="#{editarFuncionarioBean.atualizarFuncionario()}" style="margin:10px;" update="form" icon="ui-icon-check" ajax="true" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Editando...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+      </h:body>
+</h:html>

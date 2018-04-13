@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TermoIFCE" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ba58683-2070-4d56-a3e6-0309d39295f9">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.report.description" value="Termo de Responsabilidade dos Armários do IFCE"/>
+	<parameter name="nome" class="java.lang.String"/>
+	<parameter name="matricula" class="java.lang.String"/>
+	<parameter name="armario" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<image>
+				<reportElement x="229" y="0" width="130" height="121" uuid="b8f8bf35-5f6a-47db-ad0d-1e0aba2fc4fe"/>
+				<imageExpression><![CDATA["/home/raylson/eclipse-workspace/Armario/reports/ifce.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="20" width="305" height="30" uuid="933c337b-50ab-438f-9021-77578133fd3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Termo de Responsabilidade]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="198" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="40" width="38" height="24" uuid="b2f26f51-f12b-4909-9b67-3041b7804039"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Eu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="106" width="540" height="92" uuid="76d4b6b9-d6c4-4fac-a21e-6b76fa9660c9"/>
+				<textElement textAlignment="Justified">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Caso eu venha perder a chave ou em qualquer outra ocorrência estou ciente que eu tenho total responsabilidade. Além disso, fui orientado e estou ciente acerca do Regulamento da Organização Didática dessa Instituição de Ensino e tenho ciência que preciso realizar a devolução da chave nos casos descritos nesse regulamento.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="70" width="80" height="24" uuid="3a88cd79-0cb7-4680-bf26-ce9b609e273e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Matricula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="70" width="80" height="24" uuid="8fc79d7f-4030-4b0e-959b-69ccc0ca6f72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Armário]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="40" width="498" height="24" uuid="069c9015-9211-46ad-8a3d-5e74cba23288"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="70" width="220" height="24" uuid="2107881c-a7ac-47cb-b9a6-d257ade5be35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="70" width="118" height="24" uuid="38739c85-cfa9-42b3-8945-74ca3ad2cc6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{armario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="157" splitType="Stretch">
+			<line>
+				<reportElement positionType="Float" x="144" y="57" width="276" height="1" uuid="ff513f08-69d2-4227-b05c-2000fc506060"/>
+			</line>
+			<staticText>
+				<reportElement x="229" y="62" width="100" height="30" uuid="01373c8f-c9c6-450c-813f-fe643d01cb5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Aluno]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="149" y="122" width="276" height="1" uuid="683b7e48-ae08-4335-b282-1cee310980eb"/>
+			</line>
+			<staticText>
+				<reportElement x="200" y="127" width="156" height="30" uuid="4fa30ad8-5b35-4087-9227-30da1500fc1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Coordenação do Curso]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="89" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="78" y="52" width="404" height="48" uuid="ebf7a29f-8bf4-4017-9724-687322ec3607"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Coordenação do Curso de Ciência da Computação
+Instituto Federal de Educação, Ciência e Tecnologia do Ceará
+Campus Maracanaú]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

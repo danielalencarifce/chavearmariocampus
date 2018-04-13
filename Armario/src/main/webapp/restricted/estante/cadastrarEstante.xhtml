@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head></h:head>
+	<h:body>
+          <p:layout fullPage="true">
+			 <h:form id="form">
+			 	<p:growl id="growl" for="sucess" />
+				<p:panel id="panel" header="Cadastro de Estante"> 
+					<h:panelGrid columns="3">
+						<h:outputLabel for="numero" value="Número da estante:" />
+						<p:inputText id="numero" value="#{cadastrarEstanteBean.numero_estante}" required="true" requiredMessage="O número da estante deve ser preenchido" />
+						<p:message for="numero" display="icon" />
+			            
+			            <h:outputLabel for="coordenacao" value="Coordenação" />
+			            <p:selectOneMenu id="coordenacao" value="#{cadastrarEstanteBean.nomeCoordenacao}" style="width:150px" required="true" requiredMessage="Selecione a coordenação">
+			                <f:selectItem itemLabel="Selecione a coordenação" itemValue="" noSelectionOption="true" />
+			                <f:selectItems value="#{cadastrarEstanteBean.getNomesCoordenacao()}" />
+			            </p:selectOneMenu>	
+			            <p:message for="coordenacao" display="icon" />
+			            						
+					</h:panelGrid>
+					<p:commandButton id="cadBtn" type="submit" value="Cadastrar" actionListener="#{cadastrarEstanteBean.adicionarEstante()}" style="margin:10px;" update="form" icon="ui-icon-check" ajax="true" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Cadastrando...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+      </h:body>
+</h:html>

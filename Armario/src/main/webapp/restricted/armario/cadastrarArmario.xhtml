@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:p="http://primefaces.org/ui">
+	
+	<h:head></h:head>
+	<h:body>
+          <p:layout fullPage="true">
+			 <h:form id="form">
+			 	<p:growl id="growl" for="sucess" />
+				<p:panel id="panel" header="Cadastro de Armário"> 
+					<h:panelGrid columns="3">
+						<h:outputLabel for="numero" value="Número do armário:" />
+						<p:inputText id="numero" value="#{cadastrarArmarioBean.numero_armario}" required="true" requiredMessage="O número do armário deve ser preenchido" />
+						<p:message for="numero" display="icon" />
+						
+						<h:outputLabel for="bloco" value="Bloco:" />
+			            <p:selectOneMenu id="bloco" value="#{cadastrarArmarioBean.bloco}" style="width:150px" required="true" requiredMessage="Selecione o bloco">
+			                <f:selectItem itemLabel="Selecione o bloco" itemValue="" noSelectionOption="true" />
+			                <f:selectItem itemLabel="Computação" itemValue="Computação"/>
+			                <f:selectItem itemLabel="Meio Ambiente" itemValue="Meio Ambiente"/>
+			                <f:selectItem itemLabel="Automação Industrial" itemValue="Automação Industrial"/>
+			                <f:selectItem itemLabel="Química" itemValue="Química"/>
+			            </p:selectOneMenu>
+			            <p:message for="bloco" display="icon" />
+			            
+			            <h:outputLabel for="coordenacao" value="Coordenação" />
+			            <p:selectOneMenu id="coordenacao" value="#{cadastrarArmarioBean.nomeCoordenacao}" style="width:150px" required="true" requiredMessage="Selecione a coordenação">
+			                <f:selectItem itemLabel="Selecione a coordenação" itemValue="" noSelectionOption="true" />
+			                <f:selectItems value="#{cadastrarArmarioBean.getNomesCoordenacao()}" />
+			            </p:selectOneMenu>	
+			            <p:message for="coordenacao" display="icon" />
+			            
+			            <h:outputLabel for="estante" value="Estante" />
+			            <p:selectOneMenu id="estante" value="#{cadastrarArmarioBean.numeroEstante}" style="width:150px" required="true" requiredMessage="Selecione a estante">
+			                <f:selectItem itemLabel="Selecione a Estante" itemValue="" noSelectionOption="true" />
+			                <f:selectItems value="#{cadastrarArmarioBean.getNumerosEstantes()}" />
+			            </p:selectOneMenu>	
+			            <p:message for="estante" display="icon" />
+			            
+			            						
+					</h:panelGrid>
+					<p:commandButton id="cadBtn" type="submit" value="Cadastrar" actionListener="#{cadastrarArmarioBean.adicionarArmario()}" style="margin:10px;" update="form" icon="ui-icon-check" ajax="true" />
+				</p:panel>
+				<p:blockUI block="panel" trigger="cadBtn">
+					Cadastrando...
+				</p:blockUI>
+			</h:form>
+          </p:layout>
+      </h:body>
+</h:html>
